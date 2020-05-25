@@ -1,0 +1,11 @@
+.card.completed {
+    background-color: rgba(4, 179, 4, 0.55);
+}
+
+.card.in-progress {
+    background-color: rgba(169, 241, 35, 0.66);
+}
+
+.card {
+    transition: background-color 0.3s ease;
+}
