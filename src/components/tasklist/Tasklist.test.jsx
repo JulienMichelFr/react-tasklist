@@ -3,7 +3,6 @@ import { act } from "react-dom/test-utils";
 import Tasklist from "./Tasklist";
 import React from "react";
 import { TASKLIST } from "../../utils/constantes";
-import { TaskStatus } from "../task/Task";
 import { ALL_TASKS } from "../../tests/fixtures/tasks.fixtures";
 
 let container = null;

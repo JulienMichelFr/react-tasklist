@@ -49,7 +49,7 @@ const Tasklist = ({ tasks, onTaskChange, onNewTask }) => {
               status={task.status}
               content={task.content}
               title={task.title}
-              onStatusChange={(status) => onTaskChange(task, status)}
+              onStatusChange={(status) => onTaskChange({ ...task, status })}
             />
           </div>
         ))}

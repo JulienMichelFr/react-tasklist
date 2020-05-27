@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import Tasklist from "./components/tasklist/Tasklist";
 import "bootstrap/dist/css/bootstrap.min.css";
+import TasklistPage from "./pages/TasklistPage";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Tasklist />
+    <TasklistPage />
   </React.StrictMode>,
   document.getElementById("root")
 );
