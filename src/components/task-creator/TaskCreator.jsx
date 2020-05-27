@@ -11,12 +11,21 @@ const TaskCreator = ({ onSubmit }) => {
   function handleSubmit(event) {
     event.preventDefault();
     onSubmit(form);
+    reset();
   }
 
   function handleFormChange(e) {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
+    });
+  }
+
+  function reset() {
+    setForm({
+      title: "",
+      content: "",
+      status: TaskStatus.Todo,
     });
   }
 
@@ -75,6 +84,14 @@ const TaskCreator = ({ onSubmit }) => {
         disabled={isInvalid}
       >
         Add
+      </button>
+      <button
+        type="reset"
+        data-testid="reset-task"
+        className="btn btn-warning"
+        onClick={reset}
+      >
+        Reset
       </button>
     </form>
   );
