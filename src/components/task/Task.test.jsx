@@ -2,7 +2,6 @@ import { render, unmountComponentAtNode } from "react-dom";
 import React from "react";
 import Task, { TaskStatus } from "./Task";
 import { act } from "react-dom/test-utils";
-import { button } from "@storybook/addon-knobs";
 
 let container = null;
 describe("<Task>", () => {
@@ -17,7 +16,7 @@ describe("<Task>", () => {
     container = null;
   });
 
-  it("should correctly render", () => {
+  it("should render", () => {
     act(() => {
       render(
         <Task title="title" content="content" status={TaskStatus.Todo} />,
