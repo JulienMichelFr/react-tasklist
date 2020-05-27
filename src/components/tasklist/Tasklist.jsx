@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { TASKLIST } from "../../utils/constantes";
 import Task, { TaskStatus } from "../task/Task";
 import { generateId } from "../../utils/functions";
 import "./Tasklist.css";
 
-const Tasklist = () => {
-  const [tasks, setTasks] = useState([]);
-
+const Tasklist = ({ tasks, onTaskChange, onNewTask }) => {
   const addTask = () => {
     const task = {
       id: generateId(),
@@ -14,12 +12,16 @@ const Tasklist = () => {
       content: "Task content",
       status: TaskStatus.Todo,
     };
-    setTasks([...tasks, task]);
+    onNewTask(task);
   };
 
   function getAddButton() {
     return (
-      <button className="btn btn-primary btn-sm" onClick={addTask}>
+      <button
+        data-testid="add-task"
+        className="btn btn-primary btn-sm"
+        onClick={addTask}
+      >
         +
       </button>
     );
@@ -34,20 +36,6 @@ const Tasklist = () => {
     );
   }
 
-  const handleTaskStatusChange = (task, status) => {
-    setTasks(
-      tasks.map((t) => {
-        if (t.id !== task.id) {
-          return t;
-        }
-        return {
-          ...t,
-          status,
-        };
-      })
-    );
-  };
-
   return (
     <div>
       <div>
@@ -56,12 +44,12 @@ const Tasklist = () => {
       </div>
       <div>
         {tasks.map((task) => (
-          <div data-test-id="task" className="m-b" key={task.id}>
+          <div data-testid="task" className="m-b" key={task.id}>
             <Task
               status={task.status}
               content={task.content}
               title={task.title}
-              onStatusChange={(status) => handleTaskStatusChange(task, status)}
+              onStatusChange={(status) => onTaskChange(task, status)}
             />
           </div>
         ))}

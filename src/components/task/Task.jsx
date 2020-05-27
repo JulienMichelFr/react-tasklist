@@ -21,6 +21,7 @@ const Task = ({ title, content, status, onStatusChange }) => {
         <hr />
         {statuses.map((s) => (
           <button
+            data-testid={`change-status-button-${s}`}
             className="btn btn-primary btn-sm card-link"
             key={s}
             onClick={() => onStatusChange(s)}

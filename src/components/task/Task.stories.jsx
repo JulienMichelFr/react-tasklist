@@ -4,27 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { select, text, withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { Wrapper } from "../../utils/testing";
-
-const TODO_TASK = {
-  id: 1,
-  title: "Task 1",
-  content: "Task 1 content",
-  status: TaskStatus.Todo,
-};
-
-const INPROGRESS_TASK = {
-  id: 2,
-  title: "Task 2",
-  content: "Task 2 content",
-  status: TaskStatus.InProgress,
-};
-
-const COMPLETED_TASK = {
-  id: 3,
-  title: "Task 3",
-  content: "Task 3 content",
-  status: TaskStatus.Completed,
-};
+import {
+  COMPLETED_TASK,
+  IN_PROGRESS_TASK,
+  TODO_TASK,
+} from "../../tests/fixtures/tasks.fixtures";
 
 export default {
   title: "<Task>",
@@ -45,9 +29,9 @@ export const Todo = () => (
 export const InProgress = () => (
   <Wrapper>
     <Task
-      title={INPROGRESS_TASK.title}
-      status={INPROGRESS_TASK.status}
-      content={INPROGRESS_TASK.content}
+      title={IN_PROGRESS_TASK.title}
+      status={IN_PROGRESS_TASK.status}
+      content={IN_PROGRESS_TASK.content}
     />
   </Wrapper>
 );

@@ -4,6 +4,7 @@ import Tasklist from "./Tasklist";
 import React from "react";
 import { TASKLIST } from "../../utils/constantes";
 import { TaskStatus } from "../task/Task";
+import { ALL_TASKS } from "../../tests/fixtures/tasks.fixtures";
 
 let container = null;
 describe("<Tasklist>", function () {
@@ -33,36 +34,23 @@ describe("<Tasklist>", function () {
   });
 
   it("should display tasks", () => {
-    const tasks = [
-      {
-        id: 1,
-        title: "Task 1",
-        content: "Task 1 content",
-        status: TaskStatus.Todo,
-      },
-      {
-        id: 2,
-        title: "Task 2",
-        content: "Task 2 content",
-        status: TaskStatus.InProgress,
-      },
-      {
-        id: 3,
-        title: "Task 3",
-        content: "Task 3 content",
-        status: TaskStatus.Completed,
-      },
-    ];
     act(() => {
-      render(<Tasklist />, container);
+      render(<Tasklist tasks={ALL_TASKS} />, container);
     });
-    const button = document.querySelector("button");
+    const taskElements = document.querySelectorAll('[data-testid="task"]');
+    expect(taskElements.length).toEqual(3);
+  });
+
+  it("should dispatch onNewTask event", () => {
+    const onNewTask = jest.fn();
     act(() => {
-      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      render(<Tasklist tasks={ALL_TASKS} onNewTask={onNewTask} />, container);
     });
-    let taskElements = document.querySelectorAll("[data-test-id=task]");
-    const h3 = document.querySelector("h3");
-    expect(taskElements.length).toEqual(1);
-    expect(h3.textContent).toEqual("Tasks (1)");
+    const addButton = document.querySelector('[data-testid="add-task"]');
+    act(() => {
+      addButton.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+
+    expect(onNewTask).toHaveBeenCalled();
   });
 });
