@@ -7,9 +7,13 @@ import { ALL_TASKS } from "../../tests/fixtures/tasks.fixtures";
 
 let container = null;
 describe("<Tasklist>", function () {
+  const onTaskChange = jest.fn();
+  const onNewTask = jest.fn();
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    onTaskChange.mockClear();
+    onNewTask.mockClear();
   });
 
   afterEach(() => {
@@ -20,13 +24,27 @@ describe("<Tasklist>", function () {
 
   it("should render", () => {
     act(() => {
-      render(<Tasklist />, container);
+      render(
+        <Tasklist
+          tasks={[]}
+          onNewTask={onNewTask}
+          onTaskChange={onTaskChange}
+        />,
+        container
+      );
     });
   });
 
   it("should display empty message", () => {
     act(() => {
-      render(<Tasklist />, container);
+      render(
+        <Tasklist
+          tasks={[]}
+          onNewTask={onNewTask}
+          onTaskChange={onTaskChange}
+        />,
+        container
+      );
     });
     const emptyTextMessage = document.querySelector("h3");
     expect(emptyTextMessage.textContent).toEqual(TASKLIST.EMPTY_TASKLIST);
@@ -34,16 +52,29 @@ describe("<Tasklist>", function () {
 
   it("should display tasks", () => {
     act(() => {
-      render(<Tasklist tasks={ALL_TASKS} />, container);
+      render(
+        <Tasklist
+          tasks={ALL_TASKS}
+          onNewTask={onNewTask}
+          onTaskChange={onTaskChange}
+        />,
+        container
+      );
     });
     const taskElements = document.querySelectorAll('[data-testid="task"]');
     expect(taskElements.length).toEqual(3);
   });
 
   it("should dispatch onNewTask event", () => {
-    const onNewTask = jest.fn();
     act(() => {
-      render(<Tasklist tasks={ALL_TASKS} onNewTask={onNewTask} />, container);
+      render(
+        <Tasklist
+          tasks={ALL_TASKS}
+          onNewTask={onNewTask}
+          onTaskChange={onTaskChange}
+        />,
+        container
+      );
     });
     const addButton = document.querySelector('[data-testid="add-task"]');
     act(() => {

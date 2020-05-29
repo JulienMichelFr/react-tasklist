@@ -9,3 +9,7 @@ Currently using:
 For testing:
 - Storybook
 - Cypress
+
+TODO:
+- Add react-router
+- Add react-redux

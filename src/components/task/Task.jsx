@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Task.css";
 
 export const TaskStatus = {
@@ -37,5 +38,12 @@ const Task = ({ title, content, status, onStatusChange }) => {
 function getActions(status) {
   return Object.values(TaskStatus).filter((v) => v !== status);
 }
+
+Task.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string,
+  status: PropTypes.oneOf(Object.values(TaskStatus)).isRequired,
+  onStatusChange: PropTypes.func.isRequired,
+};
 
 export default Task;

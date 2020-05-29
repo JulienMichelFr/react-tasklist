@@ -5,9 +5,12 @@ import { act } from "react-dom/test-utils";
 
 let container = null;
 describe("<Task>", () => {
+  const onStatusChange = jest.fn();
+
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    onStatusChange.mockClear();
   });
 
   afterEach(() => {
@@ -19,7 +22,12 @@ describe("<Task>", () => {
   it("should render", () => {
     act(() => {
       render(
-        <Task title="title" content="content" status={TaskStatus.Todo} />,
+        <Task
+          title="title"
+          content="content"
+          status={TaskStatus.Todo}
+          onStatusChange={onStatusChange}
+        />,
         container
       );
     });
@@ -28,7 +36,12 @@ describe("<Task>", () => {
   it("should have correct class on element", () => {
     act(() => {
       render(
-        <Task title="title" content="content" status={TaskStatus.Todo} />,
+        <Task
+          title="title"
+          content="content"
+          status={TaskStatus.Todo}
+          onStatusChange={onStatusChange}
+        />,
         container
       );
     });
@@ -39,7 +52,12 @@ describe("<Task>", () => {
   it("should have correct buttons", () => {
     act(() => {
       render(
-        <Task title="title" content="content" status={TaskStatus.Todo} />,
+        <Task
+          title="title"
+          content="content"
+          status={TaskStatus.Todo}
+          onStatusChange={onStatusChange}
+        />,
         container
       );
     });
@@ -51,8 +69,6 @@ describe("<Task>", () => {
   });
 
   it("should emit correct event", () => {
-    const onStatusChange = jest.fn();
-
     act(() => {
       render(
         <Task

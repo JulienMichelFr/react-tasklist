@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { TaskStatus } from "../task/Task";
 
 const TaskCreator = ({ onSubmit }) => {
@@ -97,4 +98,7 @@ const TaskCreator = ({ onSubmit }) => {
   );
 };
 
+TaskCreator.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 export default TaskCreator;

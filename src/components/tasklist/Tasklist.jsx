@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { TASKLIST } from "../../utils/constantes";
 import Task, { TaskStatus } from "../task/Task";
 import { generateId } from "../../utils/functions";
@@ -56,6 +57,19 @@ const Tasklist = ({ tasks, onTaskChange, onNewTask }) => {
       </div>
     </div>
   );
+};
+
+Tasklist.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string,
+      status: PropTypes.oneOf(Object.values(TaskStatus)).isRequired,
+    })
+  ).isRequired,
+  onTaskChange: PropTypes.func.isRequired,
+  onNewTask: PropTypes.func.isRequired,
 };
 
 export default Tasklist;
