@@ -1,6 +1,7 @@
 import { fireEvent, render } from "@testing-library/react";
 import React from "react";
-import Task, { TaskStatus } from "./Task";
+import Task from "./Task";
+import { TaskStatus } from "../../utils/task-status.const";
 
 describe("<Task>", () => {
   const onStatusChange = jest.fn();

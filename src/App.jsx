@@ -3,6 +3,7 @@ import { Link, Route, Switch, useHistory } from "react-router-dom";
 import TaskListPage from "./pages/TaskListPage";
 import TaskCreator from "./components/task-creator/TaskCreator";
 import { CREATE_ROUTE, LIST_ROUTE } from "./utils/constantes";
+import { generateId } from "./utils/functions";
 
 const App = () => {
   const history = useHistory();
@@ -10,7 +11,7 @@ const App = () => {
 
   const handleSubmit = (task) => {
     history.push(LIST_ROUTE);
-    setTasks([...tasks, task]);
+    setTasks([...tasks, { ...task, id: generateId() }]);
   };
 
   function handleTaskChange(task) {

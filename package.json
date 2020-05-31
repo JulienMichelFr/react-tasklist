@@ -45,6 +45,7 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.0.0",
     "@storybook/react": "^5.3.19",
+    "@testing-library/cypress": "^6.0.0",
     "@types/prop-types": "^15.7.3",
     "@types/react-router-dom": "^5.1.5",
     "concurrently": "^5.2.0",

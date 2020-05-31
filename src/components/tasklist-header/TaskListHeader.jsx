@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TASKLIST } from "../../utils/constantes";
 import { TaskPropType } from "../../utils/prop-types";
-import { TaskStatus } from "../task/Task";
+import { TaskStatus } from "../../utils/task-status.const";
 
 const TaskListHeader = ({ tasks }) => {
   if (!tasks.length) {

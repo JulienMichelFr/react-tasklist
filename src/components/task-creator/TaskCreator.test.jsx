@@ -1,7 +1,7 @@
 import TaskCreator from "./TaskCreator";
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { TaskStatus } from "../task/Task";
+import { TaskStatus } from "../../utils/task-status.const";
 
 function getInputs() {
   const title = document.getElementById("title");

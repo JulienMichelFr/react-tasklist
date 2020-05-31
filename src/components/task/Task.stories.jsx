@@ -1,4 +1,4 @@
-import Task, { TaskStatus } from "./Task";
+import Task from "./Task";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { select, text, withKnobs } from "@storybook/addon-knobs";
@@ -9,6 +9,7 @@ import {
   IN_PROGRESS_TASK,
   TODO_TASK,
 } from "../../tests/fixtures/tasks.fixtures";
+import { TaskStatus } from "../../utils/task-status.const";
 
 export default {
   title: "<Task>",

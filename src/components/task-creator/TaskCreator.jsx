@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { TaskStatus } from "../task/Task";
+import { TaskStatus } from "../../utils/task-status.const";
 
 const TaskCreator = ({ onSubmit }) => {
   const [form, setForm] = useState({

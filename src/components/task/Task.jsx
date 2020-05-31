@@ -1,12 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Task.css";
-
-export const TaskStatus = {
-  Todo: "todo",
-  Completed: "completed",
-  InProgress: "in-progress",
-};
+import { TaskStatus } from "../../utils/task-status.const";
 
 const Task = ({ title, content, status, onStatusChange }) => {
   function makeClass() {

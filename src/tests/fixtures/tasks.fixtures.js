@@ -1,4 +1,4 @@
-import { TaskStatus } from "../../components/task/Task";
+import { TaskStatus } from "../../utils/task-status.const";
 
 export const TODO_TASK = {
   id: 1,
