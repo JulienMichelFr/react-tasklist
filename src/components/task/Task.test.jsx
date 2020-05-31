@@ -1,66 +1,47 @@
-import { render, unmountComponentAtNode } from "react-dom";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 import Task, { TaskStatus } from "./Task";
-import { act } from "react-dom/test-utils";
 
-let container = null;
 describe("<Task>", () => {
   const onStatusChange = jest.fn();
 
   beforeEach(() => {
-    container = document.createElement("div");
-    document.body.appendChild(container);
     onStatusChange.mockClear();
   });
 
-  afterEach(() => {
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
-  });
-
   it("should render", () => {
-    act(() => {
-      render(
-        <Task
-          title="title"
-          content="content"
-          status={TaskStatus.Todo}
-          onStatusChange={onStatusChange}
-        />,
-        container
-      );
-    });
+    render(
+      <Task
+        title="title"
+        content="content"
+        status={TaskStatus.Todo}
+        onStatusChange={onStatusChange}
+      />
+    );
   });
 
   it("should have correct class on element", () => {
-    act(() => {
-      render(
-        <Task
-          title="title"
-          content="content"
-          status={TaskStatus.Todo}
-          onStatusChange={onStatusChange}
-        />,
-        container
-      );
-    });
-    const card = document.querySelector(".card");
+    const { getByTestId } = render(
+      <Task
+        title="title"
+        content="content"
+        status={TaskStatus.Todo}
+        onStatusChange={onStatusChange}
+      />
+    );
+    const card = getByTestId("task-container");
     expect(card.classList).toContain(TaskStatus.Todo);
   });
 
   it("should have correct buttons", () => {
-    act(() => {
-      render(
-        <Task
-          title="title"
-          content="content"
-          status={TaskStatus.Todo}
-          onStatusChange={onStatusChange}
-        />,
-        container
-      );
-    });
+    render(
+      <Task
+        title="title"
+        content="content"
+        status={TaskStatus.Todo}
+        onStatusChange={onStatusChange}
+      />
+    );
 
     const buttons = document.querySelectorAll("button");
     expect(buttons.length).toEqual(2);
@@ -69,29 +50,20 @@ describe("<Task>", () => {
   });
 
   it("should emit correct event", () => {
-    act(() => {
-      render(
-        <Task
-          title="title"
-          content="content"
-          status={TaskStatus.Todo}
-          onStatusChange={onStatusChange}
-        />,
-        container
-      );
-    });
+    render(
+      <Task
+        title="title"
+        content="content"
+        status={TaskStatus.Todo}
+        onStatusChange={onStatusChange}
+      />
+    );
 
     const [completed, inProgress] = document.querySelectorAll("button");
 
-    act(() => {
-      completed.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    });
-
+    fireEvent.click(completed);
     expect(onStatusChange).toHaveBeenCalledWith(TaskStatus.Completed);
-    act(() => {
-      inProgress.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    });
-
+    fireEvent.click(inProgress);
     expect(onStatusChange).toHaveBeenCalledWith(TaskStatus.InProgress);
   });
 });

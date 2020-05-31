@@ -15,7 +15,7 @@ const Task = ({ title, content, status, onStatusChange }) => {
   const statuses = getActions(status);
 
   return (
-    <div className={makeClass()}>
+    <div data-testid="task-container" className={makeClass()}>
       <div className="card-body">
         <div className="card-title">{title}</div>
         <div className="card-text">{content}</div>
