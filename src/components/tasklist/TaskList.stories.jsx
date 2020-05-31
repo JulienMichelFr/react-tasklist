@@ -1,4 +1,4 @@
-import Tasklist from "./Tasklist";
+import TaskList from "./TaskList";
 import React from "react";
 import { Wrapper } from "../../utils/testing";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,18 +11,18 @@ const onTaskChange = action("onTaskChange");
 
 export default {
   title: "<Tasklist>",
-  component: Tasklist,
+  component: TaskList,
 };
 
 export const Empty = () => (
   <Wrapper>
-    <Tasklist onNewTask={onNewTask} onTaskChange={onTaskChange} />
+    <TaskList onNewTask={onNewTask} onTaskChange={onTaskChange} />
   </Wrapper>
 );
 
 export const WithTasks = () => (
   <Wrapper>
-    <Tasklist
+    <TaskList
       tasks={ALL_TASKS}
       onNewTask={onNewTask}
       onTaskChange={onTaskChange}

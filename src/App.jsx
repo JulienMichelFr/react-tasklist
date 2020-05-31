@@ -1,28 +1,68 @@
-import React from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
-import TasklistPage from "./pages/TasklistPage";
+import React, { useState } from "react";
+import { Link, Route, Switch, useHistory } from "react-router-dom";
+import TaskListPage from "./pages/TaskListPage";
 import TaskCreator from "./components/task-creator/TaskCreator";
 import { CREATE_ROUTE, LIST_ROUTE } from "./utils/constantes";
 
 const App = () => {
   const history = useHistory();
+  const [tasks, setTasks] = useState([]);
 
   const handleSubmit = (task) => {
-    console.groupCollapsed("Submitting task ...");
-    console.log({ task });
-    console.groupEnd();
     history.push(LIST_ROUTE);
+    setTasks([...tasks, task]);
   };
 
+  function handleTaskChange(task) {
+    const result = tasks.map((t) => {
+      if (t.id !== task.id) {
+        return t;
+      }
+      return {
+        ...task,
+        id: t.id,
+      };
+    });
+    setTasks(result);
+  }
+
   return (
-    <Switch>
-      <Route exact path={LIST_ROUTE}>
-        <TasklistPage />
-      </Route>
-      <Route exact path={CREATE_ROUTE}>
-        <TaskCreator onSubmit={handleSubmit} />
-      </Route>
-    </Switch>
+    <>
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <span className="navbar-brand">TaskList</span>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarsExampleDefault"
+          aria-controls="navbarsExampleDefault"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <Link to={LIST_ROUTE} className="nav-link">
+                List
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <main role="main" className="container-fluid">
+        <Switch>
+          <Route exact path={LIST_ROUTE}>
+            <TaskListPage tasks={tasks} onTaskChange={handleTaskChange} />
+          </Route>
+          <Route exact path={CREATE_ROUTE}>
+            <TaskCreator onSubmit={handleSubmit} />
+          </Route>
+        </Switch>
+      </main>
+    </>
   );
 };
 

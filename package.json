@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "test:e2e": "concurrently --kill-others --success=first 'npm run start:e2e' 'npm run cypress:run'",
     "eject": "react-scripts eject",
-    "cypress": "cypress open",
+    "cypress": "concurrently --kill-others 'npm run start:e2e' 'cypress open'",
     "cypress:run": "cypress run",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
