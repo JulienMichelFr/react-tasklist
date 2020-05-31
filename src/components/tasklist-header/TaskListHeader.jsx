@@ -19,8 +19,7 @@ const TaskListHeader = ({ tasks }) => {
         TASKLIST.EMPTY_TASKLIST
       ) : (
         <>
-          Tasks ({getTaskByStatus(TaskStatus.Completed).length} / {tasks.length}
-          )
+          Tasks ({getTaskByStatus(TaskStatus.Completed).length}/{tasks.length})
         </>
       )}
     </h3>
