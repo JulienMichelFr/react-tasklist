@@ -24,13 +24,15 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import "@testing-library/cypress/add-commands";
+import { addTask } from "../../src/store/actions";
 
 Cypress.Commands.add("addTask", (tasks) => {
   for (const task of tasks) {
-    cy.findByTestId("add-task").click();
+    cy.window().its("store").invoke("dispatch", addTask(task));
+    /*cy.findByTestId("add-task").click();
     cy.get("#title").type(task.title);
     cy.get("#content").type(task.content);
     cy.get("#status").select(task.status);
-    cy.findByTestId("add-task").click();
+    cy.findByTestId("add-task").click();*/
   }
 });

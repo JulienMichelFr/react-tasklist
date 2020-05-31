@@ -13,20 +13,21 @@ const TASK = () => {
   };
 };
 
-describe("TasklistPage", () => {
+describe("TaskList", () => {
   it("Display an empty list", () => {
     cy.get("h3").should("contain.text", TASKLIST.EMPTY_TASKLIST);
   });
 
   it("Add task", () => {
-    cy.addTask([TASK()]);
+    const task = TASK();
+    cy.findByTestId("add-task").click();
+    cy.get("#title").type(task.title);
+    cy.get("#content").type(task.content);
+    cy.get("#status").select(task.status);
+    cy.findByTestId("add-task").click();
     cy.findByTestId("task").should("exist");
   });
 
-  it("Add multiple tasks", () => {
-    cy.addTask([TASK(), TASK()]);
-    cy.findAllByTestId("task").should("have.length", 2);
-  });
   it("Change task status", () => {
     cy.addTask([TASK(), { ...TASK(), status: TaskStatus.Todo }]);
     cy.findAllByTestId("change-status-button-completed").first().click();

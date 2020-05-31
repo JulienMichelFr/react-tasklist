@@ -1,7 +1,6 @@
 import React from "react";
-import MemoryRouter from "react-router-dom";
-import { render as initialRender } from "@testing-library/react";
 import Router from "react-router-dom";
+import { render as initialRender } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 
 export function Wrapper({ children }) {

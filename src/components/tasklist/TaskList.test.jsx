@@ -1,9 +1,7 @@
-import { act } from "react-dom/test-utils";
 import TaskList from "./TaskList";
 import React from "react";
-import { TASKLIST } from "../../utils/constantes";
 import { ALL_TASKS } from "../../tests/fixtures/tasks.fixtures";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 describe("<Tasklist>", function () {
   const onTaskChange = jest.fn();

@@ -1,11 +1,12 @@
 # react-tasklist
 
-A simple project I use to learn React and it's ecosystem.
+A simple project to learn React and its ecosystem.
 
-Currently using:
+Currently, using:
 - React
 - PropTypes
 - react-router
+- react-redux
 
 For testing:
 - Storybook
@@ -13,5 +14,4 @@ For testing:
 - @testing-library
 
 TODO:
-- Add react-redux
 - Persistence (localStorage or Rest/GQL API)
