@@ -12,7 +12,6 @@ const TaskCreator = ({ onSubmit }) => {
   function handleSubmit(event) {
     event.preventDefault();
     onSubmit(form);
-    reset();
   }
 
   function handleFormChange(e) {

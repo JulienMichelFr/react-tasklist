@@ -1,30 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TASKLIST } from "../../utils/constantes";
+import { CREATE_ROUTE, TASKLIST } from "../../utils/constantes";
 import Task, { TaskStatus } from "../task/Task";
-import { generateId } from "../../utils/functions";
 import "./Tasklist.css";
+import { Link } from "react-router-dom";
 
 const Tasklist = ({ tasks, onTaskChange, onNewTask }) => {
-  const addTask = () => {
-    const task = {
-      id: generateId(),
-      title: "Task title",
-      content: "Task content",
-      status: TaskStatus.Todo,
-    };
-    onNewTask(task);
-  };
-
   function getAddButton() {
     return (
-      <button
+      <Link
         data-testid="add-task"
         className="btn btn-primary btn-sm"
-        onClick={addTask}
+        to={CREATE_ROUTE}
       >
         +
-      </button>
+      </Link>
     );
   }
 
@@ -69,7 +59,6 @@ Tasklist.propTypes = {
     })
   ).isRequired,
   onTaskChange: PropTypes.func.isRequired,
-  onNewTask: PropTypes.func.isRequired,
 };
 
 export default Tasklist;
