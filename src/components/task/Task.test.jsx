@@ -9,17 +9,6 @@ describe("<Task>", () => {
     onStatusChange.mockClear();
   });
 
-  it("should render", () => {
-    render(
-      <Task
-        title="title"
-        content="content"
-        status={TaskStatus.Todo}
-        onStatusChange={onStatusChange}
-      />
-    );
-  });
-
   it("should have correct class on element", () => {
     const { getByTestId } = render(
       <Task
