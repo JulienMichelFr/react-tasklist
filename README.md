@@ -7,6 +7,7 @@ Currently, using:
 - PropTypes
 - react-router
 - react-redux
+- redux-saga
 
 For testing:
 - Storybook
