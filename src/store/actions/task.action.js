@@ -1,3 +1,5 @@
+import { generateId } from "../../utils/functions";
+
 export const ADD_TASK = "[Task] Add";
 export const REMOVE_TASK = "[Task] Remove";
 export const UPDATE_TASK_STATUS = "[Task] Update status";
@@ -5,7 +7,10 @@ export const UPDATE_TASK_STATUS = "[Task] Update status";
 export function addTask(task) {
   return {
     type: ADD_TASK,
-    payload: task,
+    payload: {
+      id: generateId(),
+      ...task,
+    },
   };
 }
 
