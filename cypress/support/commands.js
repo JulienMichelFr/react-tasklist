@@ -25,10 +25,13 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import "@testing-library/cypress/add-commands";
 import { addTask } from "../../src/store/actions";
+import { generateId } from "../../src/utils/functions";
 
 Cypress.Commands.add("addTask", (tasks) => {
   for (const task of tasks) {
-    cy.window().its("store").invoke("dispatch", addTask(task));
+    cy.window()
+      .its("store")
+      .invoke("dispatch", addTask({ ...task, id: generateId() }));
     /*cy.findByTestId("add-task").click();
     cy.get("#title").type(task.title);
     cy.get("#content").type(task.content);

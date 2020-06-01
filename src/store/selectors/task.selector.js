@@ -1,3 +1,3 @@
 export function selectTasks(state) {
-  return state?.tasks || [];
+  return state?.tasks?.tasks || [];
 }

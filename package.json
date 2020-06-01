@@ -27,7 +27,8 @@
     "cypress": "concurrently --kill-others 'npm run start:e2e' 'cypress open'",
     "cypress:run": "cypress run",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "api": "json-server --watch db.json --port 4000"
   },
   "browserslist": {
     "production": [
@@ -55,10 +56,19 @@
     "concurrently": "^5.2.0",
     "cypress": "^4.7.0",
     "eslint-plugin-cypress": "^2.11.1",
+    "json-server": "^0.16.1",
     "prettier": "^2.0.5",
     "redux-devtools": "^3.5.0"
   },
   "jest": {
-    "coveragePathIgnorePatterns": ["<rootDir>/node_modules", ".stories.jsx", "serviceWork.js", "setupTests.js", "<rootDir>/src/utils/testing", ".storybook", "cypress"]
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules",
+      ".stories.jsx",
+      "serviceWork.js",
+      "setupTests.js",
+      "<rootDir>/src/utils/testing",
+      ".storybook",
+      "cypress"
+    ]
   }
 }

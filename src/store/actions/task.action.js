@@ -1,8 +1,15 @@
 import { generateId } from "../../utils/functions";
 
-export const ADD_TASK = "[Task] Add";
-export const REMOVE_TASK = "[Task] Remove";
-export const UPDATE_TASK_STATUS = "[Task] Update status";
+function makeAction(action) {
+  return `[Task] ${action}`;
+}
+
+export const ADD_TASK = makeAction("Add");
+export const REMOVE_TASK = makeAction("Remove");
+export const UPDATE_TASK_STATUS = makeAction("Update status");
+export const LOAD_TASK = makeAction("Load");
+export const LOAD_TASK_SUCCESS = makeAction("Load success");
+export const LOAD_TASK_FAILED = makeAction("Load failed");
 
 export function addTask(task) {
   return {
@@ -29,4 +36,16 @@ export function updateTaskStatus({ id }, status) {
       status,
     },
   };
+}
+
+export function loadTask() {
+  return { type: LOAD_TASK };
+}
+
+export function loadTaskSuccess(tasks) {
+  return { type: LOAD_TASK_SUCCESS, payload: tasks };
+}
+
+export function loadTaskFailed(error) {
+  return { type: LOAD_TASK_FAILED, payload: error };
 }
